@@ -1,0 +1,13 @@
+[project]
+name = "mlb-sizing-studio"
+version = "0.1.0"
+description = "Point de départ à adapter."
+requires-python = ">=3.12"
+dependencies = ["mistralai-agents", "mistralai-workflows", "pydantic>=2"]
+
+[project.optional-dependencies]
+evals = ["mistralai-evaluations"]
+telemetry = ["opentelemetry-api"]
+
+[tool.mistralai.agents]
+entrypoint = "main:agent"
