@@ -30,9 +30,13 @@ cp .env.example .env   # puis renseignez MISTRAL_API_KEY (et MISTRAL_API_URL pou
 uv run --env-file .env python agents_app.py <agent> "votre message"   # un agent, en local
 uv run --env-file .env python workflows_app.py                         # le worker des workflows
 uv run --env-file .env agents serve . --name <agent>                   # agent servi depuis vos serveurs
-uv run --env-file .env agents deploy                                   # agent géré par Mistral (main.py)
+uv run --env-file .env agents deploy                                   # agent géré par Mistral (commit poussé)
 uv run --env-file .env python triggers_setup.py                        # aperçu des déclencheurs
 ```
+
+`agents deploy` construit l'image à partir du commit poussé sur GitHub (pas de ce dossier), cloné par le
+connecteur GitHub de Studio : commitez et poussez ce dossier avant chaque déploiement. `.gitignore` et
+`.dockerignore` excluent `.env` et `.venv`.
 
 Les validations humaines des workflows attendent le signal `decision` :
 `{"step": "<identifiant du pas>", "approved": true}`. Les pas form, confirm et canvas posent leur question
